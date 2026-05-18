@@ -5,7 +5,7 @@ import CollectionData from "../data/animals.json";
 
 const Collection = () => {
   const CategoryAnimals = CollectionData.filter(
-    (animal) => animal.featured === true,
+    (animal) => animal.collection === true,
   );
   return (
     <div className="py-10 px-4">

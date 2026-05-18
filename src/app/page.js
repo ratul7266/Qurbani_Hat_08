@@ -1,6 +1,9 @@
 import AnimalsCard from "@/components/AnimalsCard";
 import Banner from "@/components/Banner";
 import Collection from "@/components/Collection";
+import Featured from "@/components/Featured";
+import QurbaniInsights from "@/components/QurbaniInsights";
+
 
 
 export default function Home() {
@@ -9,6 +12,8 @@ export default function Home() {
       <div>
         <Banner />
         <Collection />
+        <Featured />
+        <QurbaniInsights />
         <AnimalsCard />
       </div>
     </div>
