@@ -12,7 +12,7 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-linear-to-br from-[#052e16] via-[#14532d] to-[#064e3b] text-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-11/12 mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
           <h2 className="text-4xl font-bold text-emerald-400 mb-4">
             Qurbani Hat

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FeaturedAnimal from "../data/animals.json";
+import Link from "next/link";
 
 const Featured = () => {
   const featuredAnimals = FeaturedAnimal.filter(
@@ -21,11 +22,11 @@ const Featured = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-11/12 mx-auto">
         {featuredAnimals.map((animal) => (
           <div
             key={animal.id}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-200 hover:border-gray-300 hover:shadow-sm"
+            className="max-w-11/12 mx-auto group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-200 hover:border-gray-300 hover:shadow-sm"
           >
             {/* Image */}
             <div className="relative h-48 image-full overflow-hidden bg-gray-100">
@@ -86,7 +87,7 @@ const Featured = () => {
                   {animal.location}
                 </span>
                 <button className="rounded-lg border border-gray-200 px-4 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 active:scale-95">
-                  View Details
+                  <Link href={`/animals/${animal.id}`}>View Details</Link>
                 </button>
               </div>
             </div>

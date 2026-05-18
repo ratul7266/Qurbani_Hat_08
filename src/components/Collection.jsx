@@ -2,6 +2,7 @@
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import CollectionData from "../data/animals.json";
+import Link from "next/link";
 
 const Collection = () => {
   const CategoryAnimals = CollectionData.filter(
@@ -48,7 +49,9 @@ const Collection = () => {
                 </span>
 
                 <div className="card-actions justify-end mt-4">
-                  <button className="btn btn-primary">View Details</button>
+                  <button className="btn bg-green-800 text-white hover:bg-green-700 rounded-4xl">
+                    <Link href={`/animals/${animal.id}`}>See More</Link>
+                  </button>
                 </div>
               </div>
             </div>
