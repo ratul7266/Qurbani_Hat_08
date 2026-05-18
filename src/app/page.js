@@ -1,4 +1,3 @@
-import AnimalsCard from "@/components/AnimalsCard";
 import Banner from "@/components/Banner";
 import Collection from "@/components/Collection";
 import Featured from "@/components/Featured";
@@ -14,7 +13,6 @@ export default function Home() {
         <Collection />
         <Featured />
         <QurbaniInsights />
-        <AnimalsCard />
       </div>
     </div>
   );
