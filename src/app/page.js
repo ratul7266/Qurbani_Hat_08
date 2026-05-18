@@ -1,16 +1,16 @@
 import AnimalsCard from "@/components/AnimalsCard";
 import Banner from "@/components/Banner";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import Image from "next/image";
+import Collection from "@/components/Collection";
+
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
-      <Banner />
-      <AnimalsCard />
-      <Footer />
+      <div>
+        <Banner />
+        <Collection />
+        <AnimalsCard />
+      </div>
     </div>
   );
 }
