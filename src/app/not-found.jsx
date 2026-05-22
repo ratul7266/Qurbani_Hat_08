@@ -1,10 +1,20 @@
 import Link from "next/link";
-import React from "react";
+import logo from "../../public/images/logo.png";
+import Image from "next/image";
 
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white shadow-lg rounded-2xl p-10 text-center max-w-md w-full">
+
+        <Image
+          src={logo}
+          alt="Qurbani Hat Logo"
+          className="mx-auto mb-4"
+          width={200}
+          height={100}
+        />
+
         <h1 className="text-6xl font-bold text-red-500 mb-4">404</h1>
 
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">

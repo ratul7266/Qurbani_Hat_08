@@ -273,7 +273,7 @@
     "name": "Indian Buffalo",
     "type": "buffalo",
     "breed": "Omani",
-    "price": 2000000,
+    "price": 200000,
     "weight": 650,
     "collection": true,
     "age": 3,

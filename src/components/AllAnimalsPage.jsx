@@ -1,4 +1,4 @@
-import AllAnimalsClient from "@/components/AllAnimalsClient";
+import AllAnimalsClient from "@/components/AllAnimalsClient";  // ← এই line টা ছিল না
 import animals from "@/data/animals.json";
 
 const AllAnimalsPage = () => {

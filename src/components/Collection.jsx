@@ -49,9 +49,11 @@ const Collection = () => {
                 </span>
 
                 <div className="card-actions justify-end mt-4">
-                  <button className="btn bg-green-800 text-white hover:bg-green-700 rounded-4xl">
-                    <Link href={`/animals/${animal.id}`}>See More</Link>
-                  </button>
+                  <Link href="/animals">
+                    <button className="btn bg-green-800 text-white hover:bg-green-700 rounded-4xl">
+                      See More
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
