@@ -2,8 +2,34 @@
 
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import { Spinner } from "@heroui/react";
+import { useEffect, useState } from "react";
 
 const AnimalDetailsClient = ({ animal }) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Loading UI
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Spinner size="lg" color="success" />
+          <p className="text-gray-500 animate-pulse">
+            Loading Animal Details...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-8xl mx-auto px-4 py-10">
 

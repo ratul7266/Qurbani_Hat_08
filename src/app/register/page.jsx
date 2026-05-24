@@ -3,8 +3,6 @@
 import { signUp } from "@/lib/auth-client";
 import {
   Check,
-  ArrowPath,
-  ArrowRightFromSquare,
   ArrowsRotateRight,
 } from "@gravity-ui/icons";
 import {
@@ -38,7 +36,6 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-green-50 via-white to-green-100 px-4">
       <div className="w-full max-w-md rounded-3xl border border-green-100 bg-white/80 backdrop-blur-md shadow-2xl p-8">
-        {/* Heading */}
         <div className="text-center mb-8">
           <h2 className="text-4xl font-black text-green-700">Create Account</h2>
 
@@ -46,14 +43,11 @@ const RegisterPage = () => {
             Join and explore premium qurbani animals 🐄
           </p>
         </div>
-
-        {/* Form */}
         <Form
           className="flex flex-col gap-5"
           render={(props) => <form {...props} />}
           onSubmit={onSubmit}
         >
-          {/* Name */}
           <TextField
             isRequired
             name="name"
@@ -76,8 +70,6 @@ const RegisterPage = () => {
 
             <FieldError />
           </TextField>
-
-          {/* Email */}
           <TextField
             isRequired
             name="email"
@@ -101,8 +93,6 @@ const RegisterPage = () => {
 
             <FieldError />
           </TextField>
-
-          {/* Password */}
           <TextField
             isRequired
             minLength={8}
@@ -139,8 +129,6 @@ const RegisterPage = () => {
 
             <FieldError />
           </TextField>
-
-          {/* Buttons */}
           <div className="flex gap-3 pt-2">
             <Button
               type="submit"
@@ -159,8 +147,6 @@ const RegisterPage = () => {
             </Button>
           </div>
         </Form>
-
-        {/* Footer */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
           <span className="text-green-700 font-semibold cursor-pointer hover:underline">

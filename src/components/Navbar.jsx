@@ -1,20 +1,48 @@
 "use client";
+
 import {
   ArrowRightToSquare,
   PersonPlus,
   ArrowRightFromSquare,
 } from "@gravity-ui/icons";
+
 import NavLink from "./NavLink";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
+
   const router = useRouter();
+
+  const [profile, setProfile] = useState({
+    name: "",
+    image: "",
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedProfile = localStorage.getItem("profile");
+
+      if (savedProfile) {
+        setProfile(JSON.parse(savedProfile));
+      } else if (session?.user) {
+        setProfile({
+          name: session.user.name || "",
+          image: session.user.image || "",
+        });
+      }
+    }
+  }, [session]);
 
   const handleLogout = async () => {
     await authClient.signOut();
+
+    localStorage.removeItem("profile");
+
     router.push("/");
     router.refresh();
   };
@@ -42,6 +70,7 @@ const Navbar = () => {
                 />
               </svg>
             </div>
+
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
@@ -49,6 +78,7 @@ const Navbar = () => {
               <li>
                 <NavLink href="/">Home</NavLink>
               </li>
+
               <li>
                 <NavLink href="/animals">All Animals</NavLink>
               </li>
@@ -72,42 +102,58 @@ const Navbar = () => {
             <li>
               <NavLink href="/">Home</NavLink>
             </li>
+
             <li>
               <NavLink href="/animals">All Animals</NavLink>
             </li>
           </ul>
         </div>
 
-        {/* Navbar End — Dynamic Auth */}
+        {/* Navbar End */}
         <div className="navbar-end gap-2">
           {isPending ? (
-            // Loading state
             <span className="loading loading-spinner loading-sm text-green-600"></span>
           ) : session ? (
-            // ✅ Logged in — Show Profile + Logout
             <>
-              {/* Profile Avatar/Name */}
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost btn-circle avatar placeholder"
+                  className="btn btn-ghost btn-circle avatar"
                 >
-                  <div className="bg-linear-to-br from-green-600 to-lime-500 text-white rounded-full w-9 h-9 flex items-center justify-center font-bold text-sm">
-                    {session.user?.name?.charAt(0)?.toUpperCase() || "U"}
-                  </div>
+                  {profile.image ? (
+                    <img
+                      src={profile.image}
+                      alt="profile"
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 rounded-full object-cover border-2 border-green-500"
+                    />
+                  ) : (
+                    <div className="bg-linear-to-br from-green-600 to-lime-500 text-white rounded-full w-9 h-9 flex items-center justify-center font-bold text-sm">
+                      {profile.name?.charAt(0)?.toUpperCase() || "U"}
+                    </div>
+                  )}
                 </div>
+
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-48 p-2 shadow border border-base-200"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-56 p-2 shadow border border-base-200"
                 >
                   <li className="menu-title text-green-700 font-semibold text-sm px-2 py-1">
-                    {session.user?.name}
+                    {profile.name}
                   </li>
+
                   <li className="text-xs text-gray-500 px-2 pb-1">
                     {session.user?.email}
                   </li>
+
                   <div className="divider my-0"></div>
+
+                  <li>
+                    <Link href="/profile">Edit Profile</Link>
+                  </li>
+
                   <li>
                     <button
                       onClick={handleLogout}
@@ -121,18 +167,18 @@ const Navbar = () => {
               </div>
             </>
           ) : (
-            // ❌ Not logged in — Show Register + Login
             <>
               <Link
                 href="/register"
-                className="btn btn-sm md:btn-md border-0 bg-linear-to-r from-green-600 via-emerald-500 to-lime-500 text-white text-xs sm:text-sm md:text-base font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl"
+                className="btn btn-sm md:btn-md border-0 bg-linear-to-r from-green-600 via-emerald-500 to-lime-500 text-white"
               >
                 <span className="hidden sm:block">Register</span>
                 <PersonPlus size={18} />
               </Link>
+
               <Link
                 href="/login"
-                className="btn btn-sm md:btn-md border-0 bg-linear-to-r from-[#14532d] via-[#16a34a] to-[#84cc16] text-white text-xs sm:text-sm md:text-base font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl"
+                className="btn btn-sm md:btn-md border-0 bg-linear-to-r from-[#14532d] via-[#16a34a] to-[#84cc16] text-white"
               >
                 <span className="hidden sm:block">Login</span>
                 <ArrowRightToSquare size={18} />

@@ -2,13 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Dropdown, Header, Label } from "@heroui/react";
-import { useState } from "react";
+import { Button, Dropdown, Header, Label, Spinner } from "@heroui/react";
+import { useEffect, useState } from "react";
 
 const AllAnimalsClient = ({ animals }) => {
   const [selected, setSelected] = useState(new Set());
-  const selectedKey = selected instanceof Set ? Array.from(selected)[0] : null;
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const selectedKey = selected instanceof Set ? Array.from(selected)[0] : null;
   const handleSelectionChange = (keys) => {
     const value = Array.from(keys)[0];
     if (value === "reset") {
@@ -17,19 +26,26 @@ const AllAnimalsClient = ({ animals }) => {
     }
     setSelected(keys);
   };
-
   const getLabel = () => {
     if (selectedKey === "low") return "Low → High Price";
     if (selectedKey === "high") return "High → Low Price";
     return "Sort By";
   };
-
   const sortedAnimals = [...animals].sort((a, b) => {
     if (selectedKey === "low") return a.price - b.price;
     if (selectedKey === "high") return b.price - a.price;
     return 0;
   });
-
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen gap-3">
+        <Spinner size="lg" color="success" />
+        <span className="text-sm text-gray-500 animate-pulse">
+          Loading Animals...
+        </span>
+      </div>
+    );
+  }
   return (
     <div className="max-w-3/4 mx-auto px-4 py-10">
       <h2 className="text-4xl font-bold text-center mb-10">All Animals</h2>

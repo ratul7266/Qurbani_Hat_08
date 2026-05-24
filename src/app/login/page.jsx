@@ -60,8 +60,6 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 to-green-50 px-4">
       
       <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-8 border border-gray-100">
-
-        {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold text-green-700">
             Welcome Back
@@ -70,15 +68,11 @@ const LoginPage = () => {
             Sign in to continue your dashboard
           </p>
         </div>
-
-        {/* Form */}
         <Form
           className="flex flex-col gap-6"
           render={(props) => <form {...props} />}
           onSubmit={onSubmit}
         >
-
-          {/* Email */}
           <TextField
             isRequired
             name="email"
@@ -100,8 +94,6 @@ const LoginPage = () => {
             />
             <FieldError />
           </TextField>
-
-          {/* Password */}
           <TextField isRequired name="password">
             <Label className="font-medium text-gray-700">Password</Label>
 
@@ -131,8 +123,6 @@ const LoginPage = () => {
 
             <FieldError />
           </TextField>
-
-          {/* Submit */}
           <Button
             type="submit"
             disabled={loading}
@@ -142,8 +132,6 @@ const LoginPage = () => {
             {loading ? "Signing in..." : "Sign In"}
           </Button>
         </Form>
-
-        {/* Footer */}
         <div className="text-center mt-6 text-sm text-gray-500">
           Don’t have an account?{" "}
           <span className="text-green-700 font-medium cursor-pointer hover:underline">

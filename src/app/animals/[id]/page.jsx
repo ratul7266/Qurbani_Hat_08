@@ -21,7 +21,7 @@ const AnimalDetailPage = async ({ params }) => {
   );
 
   if (!singleAnimal) {
-    return <h2>Animal Not Found</h2>;
+    return <not-found></not-found>;
   }
 
   return <AnimalDetailsClient animal={singleAnimal} />;
