@@ -13,15 +13,15 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 
-const LoginPage = () => {
+const LoginForm = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const callbackURL = useMemo(
     () => searchParams.get("callbackURL") || "/",
-    [searchParams]
+    [searchParams],
   );
 
   const [isVisible, setIsVisible] = useState(false);
@@ -58,7 +58,6 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 to-green-50 px-4">
-      
       <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-8 border border-gray-100">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold text-green-700">
@@ -78,9 +77,7 @@ const LoginPage = () => {
             name="email"
             type="email"
             validate={(value) => {
-              if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-              ) {
+              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                 return "Enter a valid email";
               }
               return null;
@@ -135,12 +132,19 @@ const LoginPage = () => {
         <div className="text-center mt-6 text-sm text-gray-500">
           Don’t have an account?{" "}
           <span className="text-green-700 font-medium cursor-pointer hover:underline">
-             <Link href="/register">Create one</Link>
+            <Link href="/register">Create one</Link>
           </span>
         </div>
-
       </div>
     </div>
+  );
+};
+
+const LoginPage = () => {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 };
 
