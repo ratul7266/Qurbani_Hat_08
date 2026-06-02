@@ -11,7 +11,7 @@ await client.connect();
 const db = client.db();
 
 export const auth = betterAuth({
-  trustedOrigins: ["http://localhost:3000"],
+  trustedOrigins: [process.env.NEXT_PUBLIC_BETTER_AUTH_URL],
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
